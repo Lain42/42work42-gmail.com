@@ -1,5 +1,7 @@
 package com.seleniumtest.qa.utils;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import java.io.*;
 import javax.mail.*;
@@ -14,7 +16,7 @@ public class ReadEmail {
         props.put("mail.transport.protocol", "smtp");
 
         Session mailSession = Session.getDefaultInstance(props, null);
-        InputStream source = new FileInputStream(ApplicationProperties.INSTANCE.getReferenceEmail());
+        InputStream source = Files.newInputStream(Paths.get(ApplicationProperties.INSTANCE.getReferenceEmail()));
         MimeMessage message = new MimeMessage(mailSession, source);
 
         HashMap<String, String> email = new HashMap<String, String>();
